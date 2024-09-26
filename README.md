@@ -7,7 +7,7 @@
 
   > Semester: 3rd Sem B. Tech. CSE
 
-  > Section: S1/S2
+  > Section: S1
 
   > Member-1: Name: M Vineet Nayak, Roll No: 231CS132, email: vineet.231cs132@nitk.edu.in
 
