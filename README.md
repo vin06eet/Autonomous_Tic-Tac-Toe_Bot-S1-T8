@@ -9,11 +9,11 @@
 
   > Section: S1/S2
 
-  > Member-1: Name, Roll No., email
+  > Member-1: Name: M Vineet Nayak, Roll No: 231CS132, email: vineet.231cs132@nitk.edu.in
 
-  > member-2: Name, Roll No., email
+  > member-2: Name: Nischal Basavaraju, Roll No: 231CS139, email: nischal.231cs139@nitk.edu.in
 
-  > Member-3: Name, Roll No., email
+  > Member-3: Name: Prahas G R, Roll No: 231CS142, email: prahas.231cs142@nitk.edu.in
 </details>
 
 <!-- Second Section -->
