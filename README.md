@@ -1,4 +1,4 @@
-# Write your mini-project title
+# Autonomous Tic-Tac-Toe Bot
 
 <!-- First Section -->
 ## Team Details
@@ -29,6 +29,13 @@
 > >3. A combination of priority encoder and decoder is used to decide the next optimal move.
 > >4. Uses the programming concept of greedy algorithms to decide the optimal moves.
 > >5. Ensures the same cell is not selected more than once.
+</details>
+
+## Block Diagram
+<details>
+  <summary>Detail</summary>
+
+  > Explain the working of your model with the help of a functional table (compulsory) followed by the flowchart.
 </details>
 
 <!-- Third Section -->
