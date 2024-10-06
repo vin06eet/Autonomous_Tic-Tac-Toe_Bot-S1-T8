@@ -34,10 +34,9 @@
 ## Block Diagram
 <details>
   <summary>Detail</summary>
-  ![logisim](https://github.com/user-attachments/assets/c55cefd7-0ce6-4f22-920b-1e70b64630d3)
+  
+  <img src="Snapshots/flowchart.drawio .png" alt="Image Description" />
 
-
-  > Explain the working of your model with the help of a functional table (compulsory) followed by the flowchart.
 </details>
 
 <!-- Third Section -->
