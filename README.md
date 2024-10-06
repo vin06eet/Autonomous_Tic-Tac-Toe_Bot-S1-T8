@@ -31,7 +31,7 @@
 > >5. Ensures the same cell is not selected more than once.
 </details>
 
-## Block Diagram
+## Functional Block Diagram
 <details>
   <summary>Detail</summary>
   
