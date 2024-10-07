@@ -35,7 +35,7 @@
 <details>
   <summary>Detail</summary>
   
-  <img src="Snapshots/flowchart.drawio .png" alt="Image Description" />
+  <img src="Snapshots/block.drawio.png" alt="Image Description" />
 
 </details>
 
