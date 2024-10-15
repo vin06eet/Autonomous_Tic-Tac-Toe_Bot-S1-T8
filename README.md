@@ -51,8 +51,22 @@
 ## Logisim Circuit Diagram
 <details>
   <summary>Detail</summary>
+This is the main module of the circuit.
+<img src="Snapshots/Main.png" alt="main module">
 
-  > Update a neat logisim circuit diagram
+The main submodules are
+<img src="Snapshots/computerInput.png" alt="computer input">
+<img src="Snapshots/inputModule.png" alt="inputModule">
+<img src="Snapshots/winCondition.png" alt="winCondition">
+<img src="Snapshots/userInput.png" alt="userInput">
+
+The computer input module has the following submodules
+<img src="Snapshots/condition1.png" alt="condition1">
+<img src="Snapshots/condition2.png" alt="condition2">
+<img src="Snapshots/decision1.png" alt="decision1">
+<img src="Snapshots/decision2.png" alt="decision2">
+<img src="Snapshots/decision3.png" alt="decision3">
+
 </details>
 
 <!-- Fifth Section -->
