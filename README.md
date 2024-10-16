@@ -51,8 +51,7 @@ The game uses separate modules for processing user inputs (userInput) and bot in
 computerInput module.  
 A J-K flip-flop manages turn alternation between the player and the bot.
 After every valid move, the flip-flop toggles states, ensuring that players take turns sequentially. To
-prevent simultaneous or illegal moves, a meta-stable D flip-flop combination ensures that a player’s
-turn is not ”used up” if the player selects a position that is already occupied.
+prevent simultaneous or illegal moves, a unique combination of D flip-flop ensures that a player’s turn is not ”used up” if the player selects a position that is already occupied.
 The computerInput module employs several submodules, including decision1, decision2, and
 others, alongside a 16-to-1 priority encoder and a 1-to-16 decoder.
 <img src="Snapshots/truth table.png" alt="truthTable"><br>
@@ -129,10 +128,9 @@ The main submodules are
 </details>
 <details>
   <summary>UserInput</summary>
-	This is perhaps the most distinguishing part of our project. This module contains a meta-stable flip-flop that propagates an input
+	This is perhaps the most distinguishing part of our project. This module contains a combination of flip-flop that propagates an input
 	pulse only once. This is used in our project to ensure that the turn of the users remains in the same state unless the user selects a 
-	valid input. In cases where the user selects invalid inputs such as already selected cells, or tries to play his turn twice, the meta 
-	stable flip-flop prevents the move of the user.
+	valid input. In cases where the user selects invalid inputs such as already selected cells, or tries to play his turn twice, the unique combination of D flip-flops(which allows for pulse transfer only once) prevents the move of the user.
 
  
 <img src="Snapshots/userInput.png" alt="userInput">
