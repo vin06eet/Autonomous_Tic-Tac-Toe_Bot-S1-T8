@@ -95,20 +95,79 @@ Also, the state diagram is similar to that of a jk flip flop.
 <details>
   <summary>Detail</summary>
 This is the main module of the circuit.
-<img src="Snapshots/Main.png" alt="main module">
+	<details>
+  <summary>MAIN</summary>
+		This is the main Module where the game is played and all the components are integrated.
 
+  
+<img src="Snapshots/Main.png" alt="main module">
+</details>
 The main submodules are
+<details>
+  <summary>Computer Input</summary>
+	This module calculates the most optimal move to be played by the BOT given the current situation of the game using the output of the 
+	decision modules.
+	
 <img src="Snapshots/computerInput.png" alt="computer input">
+	
+</details>
+<details>
+  <summary>InputModule</summary>
+	This module is used to propagate the user's and BOT's input to the display unit if it is valid. This unit prevents the user from making
+	an invalid input at any point in the game.
+
+ 
 <img src="Snapshots/inputModule.png" alt="inputModule">
+</details>
+<details>
+  <summary>WinCondition</summary>
+	This module is used to check if any player(the bot or the user) has won the game in the corresponding move. The output of this module
+	decides if the game has ended or not.
+
+ 
 <img src="Snapshots/winCondition.png" alt="winCondition">
+</details>
+<details>
+  <summary>UserInput</summary>
+	This is perhaps the most distinguishing part of our project. This module contains a meta-stable flip-flop that propagates an input
+	pulse only once. This is used in our project to ensure that the turn of the users remains in the same state unless the user selects a 
+	valid input. In cases where the user selects invalid inputs such as already selected cells, or tries to play his turn twice, the meta 
+	stable flip-flop prevents the move of the user.
+
+ 
 <img src="Snapshots/userInput.png" alt="userInput">
+</details>
 
 The computer input module has the following submodules
+<details>
+  <summary>Condition-1</summary>
+	
 <img src="Snapshots/condition1.png" alt="condition1">
+</details>
+<details>
+  <summary>Condition-2</summary>
+	
 <img src="Snapshots/condition2.png" alt="condition2">
+</details>
+<details>
+  <summary>Decision-1</summary>
+  	This module is used to check if the BOT can win the game in the current move given the current situation of the game board, which aids 
+   	in the decision making algorithm of the BOT to make its move.
+
+ 
 <img src="Snapshots/decision1.png" alt="decision1">
+</details>
+<details>
+  <summary>Decision-2</summary>
+	This module is used to check if the user can win the game in his/her next move given the current situation of the game board, which aids 
+   	in the decision making algorithm of the BOT to make its move.
 <img src="Snapshots/decision2.png" alt="decision2">
+</details>
+<details>
+  <summary>Decision-3</summary>
+	This module calculates the best possible cell for the BOT to make its move.
 <img src="Snapshots/decision3.png" alt="decision3">
+</details>
 
 </details>
 
