@@ -176,10 +176,18 @@ The computer input module has the following submodules
 <details>
   <summary>Detail</summary>
 
-Main File
-```
-//condition1 module
+<details>
+  <summary>Gate Level Modelling</summary>
 
+```	
+//S1-T8_gatelevel.v
+//AUTONOMOUS TIC-TAC-TOE BOT
+//M Vineet Nayak 231CS132
+//Prahas G R 231CS142
+//Nischal Basavaraju 213CS139
+//S1-T8.v
+
+//condition1 module
 module condition1(a, b, c, d, e, f, o1, o2, o3);
 	input a, b, c, d, e, f;
 	output o1, o2, o3;
@@ -263,72 +271,79 @@ module desicion2(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8,
 endmodule
 
 //priority encoder
+
 module priority_encoder_16to4 (
-    input  in15, in14, in13, in12, in11, in10,in0, in1, in2,
+    input  in15, in14, in13, in12, in11, in10, in0, in1, in2,
     input  in3, in4, in5, in6, in7, in8, in9,
-    output reg [3:0] out
+    output [3:0] out
 );
 
-always @(*) begin
-    if (in15)      out = 4'd15;
-    else if (in14) out = 4'd14;
-    else if (in13) out = 4'd13;
-    else if (in12) out = 4'd12;
-    else if (in11) out = 4'd11;
-    else if (in10) out = 4'd10;
-    else if (in5)  out = 4'd5;
-    else if (in9)  out = 4'd9;
-    else if (in1)  out = 4'd1;
-    else if (in3)  out = 4'd3;
-    else if (in7)  out = 4'd7;
-    else if (in2)  out = 4'd2;
-    else if (in8)  out = 4'd8;
-    else if (in4)  out = 4'd4;
-    else if (in6)  out = 4'd6;
-    else if (in0)  out = 4'd0;
-    else           out = 4'd15;
-    
-end
+wire n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, n_in9, n_in5, n_in3, n_in1;
+wire sel14, sel13, sel12, sel11, sel10, sel9, sel5, sel3, sel1;
+
+not (n_in15, in15);
+not (n_in14, in14);
+not (n_in13, in13);
+not (n_in12, in12);
+not (n_in11, in11);
+not (n_in10, in10);
+not (n_in9, in9);
+not (n_in5, in5);
+not (n_in3, in3);
+not (n_in1, in1);
+
+or  (out[3], in15, in14, in13, in12, in11, in10, in9, in8);
+
+and (sel14, n_in15, in14);
+and (sel13, n_in15, n_in14, in13);
+and (sel12, n_in15, n_in14, n_in13, in12);
+and (sel11, n_in15, n_in14, n_in13, n_in12, in11);
+and (sel10, n_in15, n_in14, n_in13, n_in12, n_in11, in10);
+and (sel9, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, in9);
+or  (out[2], in15, in14, in13, in12, in11, in10, sel9, in8, in4);
+
+and (sel5, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, in5);
+and (sel3, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, n_in9, n_in5, in3);
+and (sel2, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, n_in9, n_in5, n_in3, in2);
+or  (out[1], in15, in14, in13, in12, in11, sel9, sel5, sel3, sel2);
+
+and (sel1, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, n_in9, n_in5, n_in3, n_in2, in1);
+and (sel0, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, n_in9, n_in5, n_in3, n_in2, n_in1, in0);
+or  (out[0], in15, in14, in13, in12, sel11, sel10, sel9, sel5, sel3, sel1, sel0);
 
 endmodule
 
 //decoder
 module decoder_1to16 (
     input [3:0] in,
-    output reg out0, out1, out2, out3, out4, out5, out6, out7,
-    output reg out8, out9, out10, out11, out12, out13, out14, out15
+    output out0, out1, out2, out3, out4, out5, out6, out7,
+    output out8, out9, out10, out11, out12, out13, out14, out15
 );
 
-always @(*) begin
-    out0 = 1'b0; out1 = 1'b0; out2 = 1'b0; out3 = 1'b0;
-    out4 = 1'b0; out5 = 1'b0; out6 = 1'b0; out7 = 1'b0;
-    out8 = 1'b0; out9 = 1'b0; out10 = 1'b0; out11 = 1'b0;
-    out12 = 1'b0; out13 = 1'b0; out14 = 1'b0; out15 = 1'b0;
-    
-    case (in)
-        4'd0: out0 = 1'b1;
-        4'd1: out1 = 1'b1;
-        4'd2: out2 = 1'b1;
-        4'd3: out3 = 1'b1;
-        4'd4: out4 = 1'b1;
-        4'd5: out5 = 1'b1;
-        4'd6: out6 = 1'b1;
-        4'd7: out7 = 1'b1;
-        4'd8: out8 = 1'b1;
-        4'd9: out9 = 1'b1;
-        4'd10: out10 = 1'b1;
-        4'd11: out11 = 1'b1;
-        4'd12: out12 = 1'b1;
-        4'd13: out13 = 1'b1;
-        4'd14: out14 = 1'b1;
-        4'd15: out15 = 1'b1;
-        default: begin
-        end
-    endcase
-end
+wire n_in0, n_in1, n_in2, n_in3;
+not (n_in0, in[0]);
+not (n_in1, in[1]);
+not (n_in2, in[2]);
+not (n_in3, in[3]);
+
+and (out0,  n_in3, n_in2, n_in1, n_in0);  
+and (out1,  n_in3, n_in2, n_in1,  in[0]); 
+and (out2,  n_in3, n_in2,  in[1], n_in0); 
+and (out3,  n_in3, n_in2,  in[1],  in[0]); 
+and (out4,  n_in3,  in[2], n_in1, n_in0); 
+and (out5,  n_in3,  in[2], n_in1,  in[0]); 
+and (out6,  n_in3,  in[2],  in[1], n_in0); 
+and (out7,  n_in3,  in[2],  in[1],  in[0]); 
+and (out8,   in[3], n_in2, n_in1, n_in0); 
+and (out9,   in[3], n_in2, n_in1,  in[0]); 
+and (out10,  in[3], n_in2,  in[1], n_in0); 
+and (out11,  in[3], n_in2,  in[1],  in[0]); 
+and (out12,  in[3],  in[2], n_in1, n_in0); 
+and (out13,  in[3],  in[2], n_in1,  in[0]); 
+and (out14,  in[3],  in[2],  in[1], n_in0); 
+and (out15,  in[3],  in[2],  in[1], in[0]); 
 
 endmodule
-
 
 //desicion3 module
 
@@ -355,7 +370,7 @@ endmodule
 
 //computer_input module
 
-module computer_input(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, g8, g8, r9, g9, o1, o2, o3, o4, o5, o6, o7, o8, o9);
+module computer_input(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8, r9, g9, o1, o2, o3, o4, o5, o6, o7, o8, o9);
     input r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8, r9, g9;
     output o1, o2, o3, o4, o5, o6, o7, o8, o9;
     wire b1, b2, b3, b4, b5, b6, b7, b8, b9;
@@ -437,29 +452,52 @@ module mux_2to1 (
 
 endmodule
 
-//d flip-flop
+// d latch
+module d_latch (
+    input wire d,
+    input wire clk,
+    input wire clr,  
+    output wire q
+);
+    
+wire d_n, q_n, r, s;
+not (d_n, d);
+nand (r, d, clk);
+nand (s, d_n, clk);
+nand (q, clr, q_n, r);
+nand (q_n, q, s);
 
+endmodule
+
+
+//d flip-flop
 module d_flip_flop (
     input wire d,
     input wire clk,
     input wire clr,
     input wire en,
-    output reg q
+    output wire q
 );
 
-    always @(posedge clk or posedge clr) begin
-        if (clr) begin
-            q <= 1'b0;
-        end else if (en) begin
-            q <= d;
-        end
-    end
+wire d_int, clr_n, q_int;   
+not (clr_n, clr);
+and (d_int, d, en);
+
+d_latch latch(
+    .d(d_int),
+    .clk(clk),
+    .clr(clr_n),
+    .q(q_int)
+);
+
+and (q, q_int, clr_n);
 
 endmodule
 
 //input_module module
 
 module input_module(i1,i2,i3,i4,i5,i6,i7,i8,i9,en,rs,e1,e2,e3,e4,e5,e6,e7,e8,e9,o1,o2,o3,o4,o5,o6,o7,o8,o9);
+
     input i1, i2, i3, i4, i5, i6, i7, i8, i9, en, rs, e1, e2, e3, e4, e5, e6, e7, e8, e9;
     output o1, o2, o3,o4, o5, o6, o7, o8, o9;
     wire lo = 0;
@@ -517,82 +555,54 @@ endmodule
 //main 
 
 module main(
-input r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7,r8, g8, r9, g9, bot, rs,
-output R1, R2, R3, R4, R5, R6, R7, R8, R9,
-output G1, G2, G3, G4, G5, G6, G7, G8, G9,
-output rt, gt, rw, gw
-);
-//reg i1, i2, i3, i4, i5, i6, i7, i8, i9, bot, rs;
-wire R1, R2, R3, R4, R5, R6, R7, R8, R9;
-wire G1, G2, G3, G4, G5, G6, G7, G8, G9;
-wire o1,o2,o3,o4,o5,o6,o7,o8,o9;
-computer_input compi(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7,r8, g8, r9, g9, o1, o2, o3, o4, o5, o6, o7, o8, o9);
-assign G1=o1?o1:g1;
-assign G2=o2?o2:g2;
-assign G3=o3?o3:g3;
-assign G4=o4?o4:g4;
-assign G5=o5?o5:g5;
-assign G6=o6?o6:g6;
-assign G7=o7?o7:g7;
-assign G8=o8?o8:g8;
-assign G9=o9?o9:g9;
-assign R1=r1;
-assign R2=r2;
-assign R3=r3;
-assign R4=r4;
-assign R5=r5;
-assign R6=r6;
-assign R7=r7;
-assign R8=r8;
-assign R9=r9;
+	input r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7,r8, g8, r9, g9, bot, rs,
+	output wire R1, R2, R3, R4, R5, R6, R7, R8, R9,
+	output wire G1, G2, G3, G4, G5, G6, G7, G8, G9,
+	output rt, gt, rw, gw
+	);
+
+	wire o1,o2,o3,o4,o5,o6,o7,o8,o9;
+
+	computer_input compi(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7,r8, g8, r9, g9, o1, o2, o3, o4, o5, o6, o7, o8, o9);
+
+	assign G1=o1?o1:g1;
+	assign G2=o2?o2:g2;
+	assign G3=o3?o3:g3;
+	assign G4=o4?o4:g4;
+	assign G5=o5?o5:g5;
+	assign G6=o6?o6:g6;
+	assign G7=o7?o7:g7;
+	assign G8=o8?o8:g8;
+	assign G9=o9?o9:g9;
+
+	assign R1=r1;
+	assign R2=r2;
+	assign R3=r3;
+	assign R4=r4;
+	assign R5=r5;
+	assign R6=r6;
+	assign R7=r7;
+	assign R8=r8;
+	assign R9=r9;
+	
+	win_condition win_ply(R1,R2,R3,R4,R5,R6,R7,R8,R9,rw);
+	win_condition win_bot(G1,G2,G3,G4,G5,G6,G7,G8,G9,gw);
+
 endmodule
 ```
+</details>
+<details>
+  <summary>Behavioural Modelling</summary>
+	
 
-TestBench file
+	
+</details>
+<details>
+  <summary>Test Bench</summary>
+	
 
-```
-module testbench;
-    reg r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7,r8, g8, r9, g9, bot, rs;
-    wire R1, R2, R3, R4, R5, R6, R7, R8, R9;
-    wire G1, G2, G3, G4, G5, G6, G7, G8, G9;
-    wire rt, gt, rw, gw;
-
-    // Instantiate the main module
-    main UUT (
-        r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7,r8,g8, r9, g9, bot, rs,R1, R2, R3, R4, R5, R6, R7, R8, R9,G1, G2, G3, G4, G5, G6, G7, G8, G9,rt, gt, rw, gw
-    );
-
-    // Initialize inputs
-    initial begin
-        r1=0;
-        g1=1;
-        r2=0;
-        g2=0;
-        r3=0;
-        g3=0;
-        r4=0;
-        g4=0;
-        r5=1;
-        g5=0;
-        r6=1;
-        g6=0;
-        r7=0;
-        g7=0;
-        r8=0;
-        g8=0;
-        r9=0;
-        g9=0;
-    end
-
-    // Monitor the outputs
-    initial begin
-        $monitor(" %b%b  %b%b  %b%b\n %b%b  %b%b  %b%b\n %b%b  %b%b  %b%b\n,", 
-                 R1,G1,R2,G2,R3,G3,R4,G4,R5,G5,R6,G6,R7,G7,R8,G8,R9,G9
-                 );
-    end
-endmodule
-```
-
+	
+</details>
 </details>
 
 
