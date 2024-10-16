@@ -21,14 +21,14 @@
 <details>
   <summary>Detail</summary>
   
-  > 1. Motivation: This topic was chosen to showcase that something as complex and challenging as an autonomous bot can be implemented using something as simple as basic logic gates. This not only allows for a deeper understanding of hardware-level design but also bridges the gap between theoretical digital design concepts and real-world applications. The aim is to explore how classic game strategies can be implemented through hardware.
->   2. Problem Statement: To design and implement a fully autonomous tic-tac-toe playing bot without using microcontrollers or software that plays the game of tic-tac-toe along with the user. This model implements a hardware-based solution to simulate decision-making and strategy using combinational and sequential circuits.
->   3. Features: This autonomous bot will have the following features:
-> >1. Calculates the most optimal move that can be played given the current situation of the game board.
-> >2. Makes use of flip-flops to store the current state of the game.
-> >3. A combination of priority encoder and decoder is used to decide the next optimal move.
-> >4. Uses the programming concept of greedy algorithms to decide the optimal moves.
-> >5. Ensures the same cell is not selected more than once.
+  <h4>Motivation</h4> This topic was chosen to showcase that something as complex and challenging as an autonomous bot can be implemented using something as simple as basic logic gates. This not only allows for a deeper understanding of hardware-level design but also bridges the gap between theoretical digital design concepts and real-world applications. The aim is to explore how classic game strategies can be implemented through hardware.<br><br>
+   <h4>Problem Statement</h4> To design and implement a fully autonomous tic-tac-toe playing bot without using microcontrollers or software that plays the game of tic-tac-toe along with the user. This model implements a hardware-based solution to simulate decision-making and strategy using combinational and sequential circuits.<br><br>
+  <h4>Features</h4> This autonomous bot will have the following features:
+1. Calculates the most optimal move that can be played given the current situation of the game board.<br>
+2. Makes use of flip-flops to store the current state of the game.<br>
+3. A combination of priority encoder and decoder is used to decide the next optimal move.<br>
+4. Uses the programming concept of greedy algorithms to decide the optimal moves.<br>
+5. Ensures the same cell is not selected more than once.<br>
 </details>
 
 ## Functional Block Diagram
