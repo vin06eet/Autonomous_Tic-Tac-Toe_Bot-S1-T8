@@ -180,7 +180,7 @@ The computer input module has the following submodules
   <summary>Gate Level Modelling</summary>
 
 ```	
-//S1-T8_gatelevel.v
+//S1-T8
 //AUTONOMOUS TIC-TAC-TOE BOT
 //M Vineet Nayak 231CS132
 //Prahas G R 231CS142
@@ -271,47 +271,48 @@ module desicion2(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8,
 endmodule
 
 //priority encoder
-
 module priority_encoder_16to4 (
-    input  in15, in14, in13, in12, in11, in10, in0, in1, in2,
+    input  in15, in14, in13, in12, in11, in10,in0, in1, in2,
     input  in3, in4, in5, in6, in7, in8, in9,
     output [3:0] out
 );
 
-wire n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, n_in9, n_in5, n_in3, n_in1;
-wire sel14, sel13, sel12, sel11, sel10, sel9, sel5, sel3, sel1;
+	wire o1,o2,o3,o4,o5,o6,o7,o8,o9;
+	buf(o5,in5);
+	wire n1,n2,n3,n4,n5,n6,n7,n8,n9;
+	not(n5,o5);
+	not(n1,o1);
+	not(n2,o2);
+	not(n3,o3);
+	not(n4,o4);
+	not(n6,o6);
+	not(n7,o7);
+	not(n8,o8);
+	not(n9,o9);
 
-not (n_in15, in15);
-not (n_in14, in14);
-not (n_in13, in13);
-not (n_in12, in12);
-not (n_in11, in11);
-not (n_in10, in10);
-not (n_in9, in9);
-not (n_in5, in5);
-not (n_in3, in3);
-not (n_in1, in1);
+	and(o9, in9, n5);
+	and(o1,in1,n5,n9);
+	and(o3, in3, n5, n9,n1);
+	and(o7, in7,n5,n9,n1,n3);
+	and(o2, in2,n5,n9,n1,n3,n7 );
+	and(o4, in4, n5,n9,n1,n3,n7 , n2);
+	and(o6, in6, n5,n9,n1,n3,n7 , n2, n4);
+	and(o8, in8, n5,n9,n1,n3,n7 , n2, n4, n6);
 
-or  (out[3], in15, in14, in13, in12, in11, in10, in9, in8);
+	wire w1,w2,w3,w4;
+	or(w1, o1,o3,o5,o7,o9);
+	or(w2, o2, o3, o6, o7);
+	or(w3, o4, o5, o6, o7);
+	or(w4, o8, o9);
 
-and (sel14, n_in15, in14);
-and (sel13, n_in15, n_in14, in13);
-and (sel12, n_in15, n_in14, n_in13, in12);
-and (sel11, n_in15, n_in14, n_in13, n_in12, in11);
-and (sel10, n_in15, n_in14, n_in13, n_in12, n_in11, in10);
-and (sel9, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, in9);
-or  (out[2], in15, in14, in13, in12, in11, in10, sel9, in8, in4);
-
-and (sel5, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, in5);
-and (sel3, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, n_in9, n_in5, in3);
-and (sel2, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, n_in9, n_in5, n_in3, in2);
-or  (out[1], in15, in14, in13, in12, in11, sel9, sel5, sel3, sel2);
-
-and (sel1, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, n_in9, n_in5, n_in3, n_in2, in1);
-and (sel0, n_in15, n_in14, n_in13, n_in12, n_in11, n_in10, n_in9, n_in5, n_in3, n_in2, n_in1, in0);
-or  (out[0], in15, in14, in13, in12, sel11, sel10, sel9, sel5, sel3, sel1, sel0);
+	buf(out[0], w1);
+	buf(out[1], w2);
+	buf(out[2], w3);
+	buf(out[3], w4);
 
 endmodule
+
+
 
 //decoder
 module decoder_1to16 (
@@ -320,28 +321,28 @@ module decoder_1to16 (
     output out8, out9, out10, out11, out12, out13, out14, out15
 );
 
-wire n_in0, n_in1, n_in2, n_in3;
-not (n_in0, in[0]);
-not (n_in1, in[1]);
-not (n_in2, in[2]);
-not (n_in3, in[3]);
+	wire n_in0, n_in1, n_in2, n_in3;
+	not (n_in0, in[0]);
+	not (n_in1, in[1]);
+	not (n_in2, in[2]);
+	not (n_in3, in[3]);
 
-and (out0,  n_in3, n_in2, n_in1, n_in0);  
-and (out1,  n_in3, n_in2, n_in1,  in[0]); 
-and (out2,  n_in3, n_in2,  in[1], n_in0); 
-and (out3,  n_in3, n_in2,  in[1],  in[0]); 
-and (out4,  n_in3,  in[2], n_in1, n_in0); 
-and (out5,  n_in3,  in[2], n_in1,  in[0]); 
-and (out6,  n_in3,  in[2],  in[1], n_in0); 
-and (out7,  n_in3,  in[2],  in[1],  in[0]); 
-and (out8,   in[3], n_in2, n_in1, n_in0); 
-and (out9,   in[3], n_in2, n_in1,  in[0]); 
-and (out10,  in[3], n_in2,  in[1], n_in0); 
-and (out11,  in[3], n_in2,  in[1],  in[0]); 
-and (out12,  in[3],  in[2], n_in1, n_in0); 
-and (out13,  in[3],  in[2], n_in1,  in[0]); 
-and (out14,  in[3],  in[2],  in[1], n_in0); 
-and (out15,  in[3],  in[2],  in[1], in[0]); 
+	and (out0, n_in3, n_in2, n_in1, n_in0);  
+	and (out1, n_in3, n_in2, n_in1, in[0]); 
+	and (out2, n_in3, n_in2, in[1], n_in0); 
+	and (out3, n_in3, n_in2, in[1], in[0]); 
+	and (out4, n_in3, in[2], n_in1, n_in0); 
+	and (out5, n_in3, in[2], n_in1, in[0]); 
+	and (out6, n_in3, in[2], in[1], n_in0); 
+	and (out7, n_in3, in[2], in[1], in[0]); 
+	and (out8, in[3], n_in2, n_in1, n_in0); 
+	and (out9, in[3], n_in2, n_in1, in[0]); 
+	and (out10,in[3], n_in2, in[1], n_in0); 
+	and (out11,in[3], n_in2, in[1], in[0]); 
+	and (out12,in[3], in[2], n_in1, n_in0); 
+	and (out13,in[3], in[2], n_in1, in[0]); 
+	and (out14,in[3], in[2], in[1], n_in0); 
+	and (out15,in[3], in[2], in[1], in[0]); 
 
 endmodule
 
@@ -370,7 +371,7 @@ endmodule
 
 //computer_input module
 
-module computer_input(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8, r9, g9, o1, o2, o3, o4, o5, o6, o7, o8, o9);
+module computer_input(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, g8, g8, r9, g9, o1, o2, o3, o4, o5, o6, o7, o8, o9);
     input r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8, r9, g9;
     output o1, o2, o3, o4, o5, o6, o7, o8, o9;
     wire b1, b2, b3, b4, b5, b6, b7, b8, b9;
@@ -439,15 +440,9 @@ module mux_2to1 (
 
     wire not_sel;
     wire and0, and1;
-
-   
     not (not_sel, sel);
-
-    
     and (and0, in0, not_sel);
-    and (and1, in1, sel);
-
-    
+    and (and1, in1, sel);    
     or (out, and0, and1);
 
 endmodule
@@ -493,11 +488,9 @@ d_latch latch(
 and (q, q_int, clr_n);
 
 endmodule
-
 //input_module module
 
 module input_module(i1,i2,i3,i4,i5,i6,i7,i8,i9,en,rs,e1,e2,e3,e4,e5,e6,e7,e8,e9,o1,o2,o3,o4,o5,o6,o7,o8,o9);
-
     input i1, i2, i3, i4, i5, i6, i7, i8, i9, en, rs, e1, e2, e3, e4, e5, e6, e7, e8, e9;
     output o1, o2, o3,o4, o5, o6, o7, o8, o9;
     wire lo = 0;
@@ -564,31 +557,43 @@ module main(
 	wire o1,o2,o3,o4,o5,o6,o7,o8,o9;
 
 	computer_input compi(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7,r8, g8, r9, g9, o1, o2, o3, o4, o5, o6, o7, o8, o9);
-
-	assign G1=o1?o1:g1;
-	assign G2=o2?o2:g2;
-	assign G3=o3?o3:g3;
-	assign G4=o4?o4:g4;
-	assign G5=o5?o5:g5;
-	assign G6=o6?o6:g6;
-	assign G7=o7?o7:g7;
-	assign G8=o8?o8:g8;
-	assign G9=o9?o9:g9;
-
-	assign R1=r1;
-	assign R2=r2;
-	assign R3=r3;
-	assign R4=r4;
-	assign R5=r5;
-	assign R6=r6;
-	assign R7=r7;
-	assign R8=r8;
-	assign R9=r9;
 	
+	wire x1,x2,x3,x4,x5,x6,x7,x8,x9;
+	or(x1,o1,g1);
+	or(x2,o2,g2);
+	or(x3,o3,g3);
+	or(x4,o4,g4);
+	or(x5,o5,g5);
+	or(x6,o6,g6);
+	or(x7,o7,g7);
+	or(x8,o8,g8);
+	or(x9,o9,g9);
+
+	buf(G1, x1);
+	buf(G2, x2);
+	buf(G3, x3);
+	buf(G4, x4);
+	buf(G5, x5);
+	buf(G6, x6);
+	buf(G7, x7);
+	buf(G8, x8);
+	buf(G9, x9);
+	buf(R1,r1);
+	buf(R2,r2);
+	buf(R3,r3);
+	buf(R4,r4);
+	buf(R5,r5);
+	buf(R6,r6);
+	buf(R7,r7);
+	buf(R8,r8);
+	buf(R9,r9);
+
 	win_condition win_ply(R1,R2,R3,R4,R5,R6,R7,R8,R9,rw);
 	win_condition win_bot(G1,G2,G3,G4,G5,G6,G7,G8,G9,gw);
 
 endmodule
+
+
 ```
 </details>
 <details>
