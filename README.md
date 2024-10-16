@@ -67,7 +67,7 @@ Optimal Move : If neither condition is met, the bot selects an optimal move usin
 decision-making criteria. The priority encoder ensures that if multiple moves are possible, only one
 is selected, preventing conflicting or multiple moves from being executed. 
 
-<img src="Snapshots/State Diagram.png" alt="stateDiagram><br>
+<img src="Snapshots/State Diagram.png" alt="stateDiagram"><br>
 Enable Terminals and Multiplexers: Input validation is managed by the enable terminals of the
 input modules. Multiplexers are used to ensure that a player cannot make multiple inputs in a
 single turn or input at the same time as the bot. This same mechanism also disables input once the
