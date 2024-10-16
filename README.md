@@ -44,7 +44,50 @@
 <details>
   <summary>Detail</summary>
 
-  > Explain the working of your model with the help of a functional table (compulsory) followed by the flowchart.
+  The project operates by allowing both a human player and a bot to take turns placing moves on a
+3x3 Tic-Tac-Toe grid. The core structure is built around modules responsible for accepting inputs,
+determining optimal bot moves, ensuring valid turns, and detecting game completion.
+The game uses separate modules for processing user inputs (userInput) and bot inputs (computerInput). User inputs are captured through an inputModule, and the bot’s move is calculated in the
+computerInput module.  
+A J-K flip-flop manages turn alternation between the player and the bot.
+After every valid move, the flip-flop toggles states, ensuring that players take turns sequentially. To
+prevent simultaneous or illegal moves, a meta-stable D flip-flop combination ensures that a player’s
+turn is not ”used up” if the player selects a position that is already occupied.
+The computerInput module employs several submodules, including decision1, decision2, and
+others, alongside a 16-to-1 priority encoder and a 1-to-16 decoder.
+
+The bot’s logic works as follows:
+ Win Check: First, the bot evaluates all vacant positions to see if placing a move in any of them
+results in a win.  
+
+Blocking Moves: If no winning move is found, the bot checks whether it can block the player from
+winning by placing a move in a critical spot.  
+
+Optimal Move : If neither condition is met, the bot selects an optimal move using predefined
+decision-making criteria. The priority encoder ensures that if multiple moves are possible, only one
+is selected, preventing conflicting or multiple moves from being executed. 
+
+
+Enable Terminals and Multiplexers: Input validation is managed by the enable terminals of the
+input modules. Multiplexers are used to ensure that a player cannot make multiple inputs in a
+single turn or input at the same time as the bot. This same mechanism also disables input once the
+game ends in a win for either the player or the bot. The system guarantees that no further moves
+can be made after a game concludes, requiring the user to reset the game before playing again.
+
+
+Each cell in the 3x3 grid is represented by two LEDs: a red LED to represent the player’s move
+and a green LED for the bot’s move. This dual-LED setup allows the players to visually track the
+current state of the game board. Additional LEDs indicate whose turn it is and whether a player
+has won. These turn-indicator LEDs are updated in synchronization with the J-K flip-flop.  
+
+
+A dedicated winCondition module monitors the grid after every move to detect any winning
+combination. If a win is detected, the game is locked, and no further moves are allowed. This
+ensures that gameplay is concluded and the system enters a halt state until the user resets the
+board.
+Since a tic-tac-toe game can enter into many different states, the truth table for one such game
+where the game ends up being a tie.
+Also, the state diagram is similar to that of a jk flip flop.
 </details>
 
 <!-- Fourth Section -->
