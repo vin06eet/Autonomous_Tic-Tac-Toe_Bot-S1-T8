@@ -15,32 +15,38 @@ input a, b, c, d, e, f;
 endmodule
 
 //desicion1 module
-module desicion1(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8, r9, g9, o1, o2, o3, o4, o5, o6, o7, o8, o9);
-	input r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8, r9, g9;
-	output o1, o2, o3, o4, o5, o6, o7, o8, o9;
-	wire m1a, m1b, m1c, m2a, m2b, m2c, m3a, m3b, m3c, m4a, m4b, m4c;
-	wire m5a, m5b, m5c, m6a, m6b, m6c, m7a, m7b, m7c, m8a, m8b, m8c;
-	
-	condition1 mod1(r1, g1, r2, g2, r3, g3, m1a, m1b, m1c);
-	condition1 mod2(r4, g4, r5, g5, r6, g6, m2a, m2b, m2c);
-	condition1 mod3(r7, g7, r8, g8, r9, g9, m3a, m3b, m3c);
-	condition1 mod4(r1, g1, r4, g4, r7, g7, m4a, m4b, m4c);
-	condition1 mod5(r2, g2, r5, g5, r8, g8, m5a, m5b, m5c);
-	condition1 mod6(r3, g3, r6, g6, r9, g9, m6a, m6b, m6c);
-	condition1 mod7(r1, g1, r5, g5, r9, g9, m7a, m7b, m7c);
-	condition1 mod8(r3, g3, r5, g5, r7, g7, m8a, m8b, m8c);
-	
-	or(o1, m1a, m4a, m7a);
-	or(o2, m1b, m5a);
-	or(o3, m1c, m6a, m8a);
-	or(o4, m2a, m4b);
-	or(o5, m2b, m5b, m7b, m8b);
-	or(o6, m2c, m6b);
-	or(o7, m3a, m4c, m8c);
-	or(o8, m3b, m5c);
-	or(o9, m3c, m6c, m7c);
+module desicion1(
+    input r1, g1, r2, g2, r3, g3,
+    input r4, g4, r5, g5, r6, g6,
+    input r7, g7, r8, g8, r9, g9,
+    output o1, o2, o3, o4, o5, o6, o7, o8, o9
+);
+    wire m1a, m1b, m1c, m2a, m2b, m2c;
+    wire m3a, m3b, m3c, m4a, m4b, m4c;
+    wire m5a, m5b, m5c, m6a, m6b, m6c;
+    wire m7a, m7b, m7c, m8a, m8b, m8c;
 
+    condition1 mod1(r1, g1, r2, g2, r3, g3, m1a, m1b, m1c);
+    condition1 mod2(r4, g4, r5, g5, r6, g6, m2a, m2b, m2c);
+    condition1 mod3(r7, g7, r8, g8, r9, g9, m3a, m3b, m3c);
+    condition1 mod4(r1, g1, r4, g4, r7, g7, m4a, m4b, m4c);
+    condition1 mod5(r2, g2, r5, g5, r8, g8, m5a, m5b, m5c);
+    condition1 mod6(r3, g3, r6, g6, r9, g9, m6a, m6b, m6c);
+    condition1 mod7(r1, g1, r5, g5, r9, g9, m7a, m7b, m7c);
+    condition1 mod8(r3, g3, r5, g5, r7, g7, m8a, m8b, m8c);
+
+    assign o1 = m1a | m4a | m7a;
+    assign o2 = m1b | m5a;
+    assign o3 = m1c | m6a | m8a;
+    assign o4 = m2a | m4b;
+    assign o5 = m2b | m5b | m7b | m8b;
+    assign o6 = m2c | m6b;
+    assign o7 = m3a | m4c | m8c;
+    assign o8 = m3b | m5c;
+    assign o9 = m3c | m6c | m7c;
+    
 endmodule
+
 //condition2 module
 module condition2(a, b, c, d, e, f, o1, o2, o3);
     input a, b, c, d, e, f;
@@ -53,12 +59,17 @@ module condition2(a, b, c, d, e, f, o1, o2, o3);
 endmodule
 
 //desicion2 module
-module desicion2(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8, r9, g9, o1, o2, o3, o4, o5, o6, o7, o8, o9);
-    input r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8, r9, g9;
-    output o1, o2, o3, o4, o5, o6, o7, o8, o9;
-    wire m1a, m1b, m1c, m2a, m2b, m2c, m3a, m3b, m3c, m4a, m4b, m4c;
-    wire m5a, m5b, m5c, m6a, m6b, m6c, m7a, m7b, m7c, m8a, m8b, m8c;
-    
+module desicion2(
+    input r1, g1, r2, g2, r3, g3,
+    input r4, g4, r5, g5, r6, g6,
+    input r7, g7, r8, g8, r9, g9,
+    output o1, o2, o3, o4, o5, o6, o7, o8, o9
+);
+    wire m1a, m1b, m1c, m2a, m2b, m2c;
+    wire m3a, m3b, m3c, m4a, m4b, m4c;
+    wire m5a, m5b, m5c, m6a, m6b, m6c;
+    wire m7a, m7b, m7c, m8a, m8b, m8c;
+
     condition2 mod1(r1, g1, r2, g2, r3, g3, m1a, m1b, m1c);
     condition2 mod2(r4, g4, r5, g5, r6, g6, m2a, m2b, m2c);
     condition2 mod3(r7, g7, r8, g8, r9, g9, m3a, m3b, m3c);
@@ -67,18 +78,19 @@ module desicion2(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8,
     condition2 mod6(r3, g3, r6, g6, r9, g9, m6a, m6b, m6c);
     condition2 mod7(r1, g1, r5, g5, r9, g9, m7a, m7b, m7c);
     condition2 mod8(r3, g3, r5, g5, r7, g7, m8a, m8b, m8c);
-        
-    or(o1, m1a, m4a, m7a);
-    or(o2, m1b, m5a);
-    or(o3, m1c, m6a, m8a);
-    or(o4, m2a, m4b);
-    or(o5, m2b, m5b, m7b, m8b);
-    or(o6, m2c, m6b);
-    or(o7, m3a, m4c, m8c);
-    or(o8, m3b, m5c);
-    or(o9, m3c, m6c, m7c);
-        
+
+    assign o1 = m1a | m4a | m7a;
+    assign o2 = m1b | m5a;
+    assign o3 = m1c | m6a | m8a;
+    assign o4 = m2a | m4b;
+    assign o5 = m2b | m5b | m7b | m8b;
+    assign o6 = m2c | m6b;
+    assign o7 = m3a | m4c | m8c;
+    assign o8 = m3b | m5c;
+    assign o9 = m3c | m6c | m7c;
+
 endmodule
+
 
 //priority encoder
 module priority_encoder_16to4 (
@@ -150,97 +162,62 @@ endmodule
 
 //desicion3 module
 
-module desicion3(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8, r9, g9, o1, o2, o3, o4, o5, o6, o7, o8, o9);
-    input r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8, r9, g9;
-    output o1, o2, o3, o4, o5, o6, o7, o8, o9;
+module desicion3(
+    input r1, g1, r2, g2, r3, g3,
+    input r4, g4, r5, g5, r6, g6,
+    input r7, g7, r8, g8, r9, g9,
+    output o1, o2, o3, o4, o5, o6, o7, o8, o9
+);
     wire nor1, nor2, nor3, nor4, nor5, nor6, nor7, nor8, nor9;
-    nor(nor1, r1, g1);
-    nor(nor2, r2, g2);
-    nor(nor3, r3, g3);
-    nor(nor4, r4, g4);
-    nor(nor5, r5, g5);
-    nor(nor6, r6, g6);
-    nor(nor7, r7, g7);
-    nor(nor8, r8, g8);
-    nor(nor9, r9, g9);
-    wire [3:0]out;
+    wire [3:0] out;
     wire j1, j2, j3, j4, j5, j6, j7;
     reg lo = 0;
-    priority_encoder_16to4 prien(lo, lo, lo, lo, lo, lo,lo, nor1, nor2, nor3, nor4, nor5, nor6, nor7, nor8, nor9,out );
-    decoder_1to16 cir2(out, j7,o1, o2, o3, o4, o5, o6, o7, o8, o9, j1, j2, j3, j4, j5, j6);
+
+    assign nor1 = ~(r1 | g1);
+    assign nor2 = ~(r2 | g2);
+    assign nor3 = ~(r3 | g3);
+    assign nor4 = ~(r4 | g4);
+    assign nor5 = ~(r5 | g5);
+    assign nor6 = ~(r6 | g6);
+    assign nor7 = ~(r7 | g7);
+    assign nor8 = ~(r8 | g8);
+    assign nor9 = ~(r9 | g9);
+
+    priority_encoder_16to4 prien(lo, lo, lo, lo, lo, lo, lo, nor1, nor2, nor3, nor4, nor5, nor6, nor7, nor8, nor9, out);
+    decoder_1to16 cir2(out, j7, o1, o2, o3, o4, o5, o6, o7, o8, o9, j1, j2, j3, j4, j5, j6);
 
 endmodule
 
+
 //computer_input module
 
-module computer_input(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, g8, g8, r9, g9, o1, o2, o3, o4, o5, o6, o7, o8, o9);
-    input r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, r8, g8, r9, g9;
-    output o1, o2, o3, o4, o5, o6, o7, o8, o9;
+module computer_input(
+    input r1, g1, r2, g2, r3, g3, 
+    input r4, g4, r5, g5, r6, g6, 
+    input r7, g7, r8, g8, r9, g9,
+    output o1, o2, o3, o4, o5, o6, o7, o8, o9
+);
     wire b1, b2, b3, b4, b5, b6, b7, b8, b9;
     wire p1, p2, p3, p4, p5, p6, p7, p8, p9;
     wire s1, s2, s3, s4, s5, s6, s7, s8, s9;
-    reg hi = 1;
     reg lo = 0;
-    
+
     desicion1 bw(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, g8, g8, r9, g9, b1, b2, b3, b4, b5, b6, b7, b8, b9);
     desicion2 pw(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, g8, g8, r9, g9, p1, p2, p3, p4, p5, p6, p7, p8, p9);
     desicion3 as(r1, g1, r2, g2, r3, g3, r4, g4, r5, g5, r6, g6, r7, g7, g8, g8, r9, g9, s1, s2, s3, s4, s5, s6, s7, s8, s9);
     
-    output [3:0]out1, out2, out3;
-    
-    priority_encoder_16to4 pe1(lo,lo,lo,lo,lo,lo,lo,b1,b2,b3,b4,b5,b6,b7,b8,b9,  out1);
-    priority_encoder_16to4 pe2(lo,lo,lo,lo,lo,lo,lo,p1,p2,p3,p4,p5,p6,p7,p8,p9,  out2);
-    priority_encoder_16to4 pe3(lo,lo,lo,lo,lo,lo,lo,s1,s2,s3,s4,s5,s6,s7,s8,s9,  out3);
-    
-    wire d11, d12, d13, d14, d15, d16, d17, d18, d19;
-    wire d21, d22, d23, d24, d25, d26, d27, d28, d29;
-    wire d31, d32, d33, d34, d35, d36, d37, d38, d39;
-    wire j1, j2, j3, j4, j5, j6, j7;
-    wire j11, j21, j31, j41, j51, j61, j71;
-    wire j12, j22, j32, j42, j52, j62, j72;
-    
-    decoder_1to16 c1(out1, j1,d11, d12, d13, d14, d15, d16, d17, d18, d19, j2, j3, j4, j5, j6, j7 );
-    decoder_1to16 c2(out2, j11,d21, d22, d23, d24, d25, d26, d27, d28, d29, j21, j31, j41, j51, j61, j71 );
-    decoder_1to16 c3(out3, j12,d31, d32, d33, d34, d35, d36, d37, d38, d39, j22, j32, j42, j52, j62, j72 );
-    
-    wire nor1, nor2;
-    
-    nor(nor1, d11, d12, d13, d14, d15, d16, d17, d18, d19);
-    nor(nor2, d21, d22, d23, d24, d25, d26, d27, d28, d29);
-    
-    wire and1, and2, and3, and4, nad5, and6, nd7, nd8, and9;
-    wire and11, and22, and33, and44, and55, and66, and77, and88, and99;
-    
-    and(and1, d21, nor1);
-    and(and11, d31, nor1, nor2);
-    and(and2, d22, nor1);
-    and(and22, d32, nor1, nor2);
-    and(and3, d23, nor1);
-    and(and33, d33, nor1, nor2);
-    and(and4, d24, nor1);
-    and(and44, d34, nor1, nor2);
-    and(and5, d25, nor1);
-    and(and55, d35, nor1, nor2);
-    and(and6, d26, nor1);
-    and(and66, d36, nor1, nor2);
-    and(and7, d27, nor1);
-    and(and77, d37, nor1, nor2);
-    and(and8, d28, nor1);
-    and(and88, d38, nor1, nor2);
-    and(and9, d29, nor1);
-    and(and99, d39, nor1, nor2);
-    
-    or(o1, and1, and11, d11);
-    or(o2, and2, and22, d12);
-    or(o3, and3, and33, d13);
-    or(o4, and4, and44, d14);
-    or(o5, and5, and55, d15);
-    or(o6, and6, and66, d16);
-    or(o7, and7, and77, d17);
-    or(o8, and8, and88, d18);
-    or(o9, and9, and99, d19);
+    assign o1 = (b1 & ~p1 & ~s1) | (b1 & ~p1 & s1) | (b1 & p1 & ~s1) | (b1 & p1 & s1);
+    assign o2 = (b2 & ~p2 & ~s2) | (b2 & ~p2 & s2) | (b2 & p2 & ~s2) | (b2 & p2 & s2);
+    assign o3 = (b3 & ~p3 & ~s3) | (b3 & ~p3 & s3) | (b3 & p3 & ~s3) | (b3 & p3 & s3);
+    assign o4 = (b4 & ~p4 & ~s4) | (b4 & ~p4 & s4) | (b4 & p4 & ~s4) | (b4 & p4 & s4);
+    assign o5 = (b5 & ~p5 & ~s5) | (b5 & ~p5 & s5) | (b5 & p5 & ~s5) | (b5 & p5 & s5);
+    assign o6 = (b6 & ~p6 & ~s6) | (b6 & ~p6 & s6) | (b6 & p6 & ~s6) | (b6 & p6 & s6);
+    assign o7 = (b7 & ~p7 & ~s7) | (b7 & ~p7 & s7) | (b7 & p7 & ~s7) | (b7 & p7 & s7);
+    assign o8 = (b8 & ~p8 & ~s8) | (b8 & ~p8 & s8) | (b8 & p8 & ~s8) | (b8 & p8 & s8);
+    assign o9 = (b9 & ~p9 & ~s9) | (b9 & ~p9 & s9) | (b9 & p9 & ~s9) | (b9 & p9 & s9);
 
 endmodule
+
 
 //mux module
 
@@ -251,18 +228,7 @@ module mux_2to1 (
     output wire out
 );
 
-    wire not_sel;
-    wire and0, and1;
-
-   
-    not (not_sel, sel);
-
-    
-    and (and0, in0, not_sel);
-    and (and1, in1, sel);
-
-    
-    or (out, and0, and1);
+    assign out = (in0 & ~sel) | (in1 & sel);
 
 endmodule
 
@@ -288,33 +254,35 @@ endmodule
 
 //input_module module
 
-module input_module(i1,i2,i3,i4,i5,i6,i7,i8,i9,en,rs,e1,e2,e3,e4,e5,e6,e7,e8,e9,o1,o2,o3,o4,o5,o6,o7,o8,o9);
-    
-input i1, i2, i3, i4, i5, i6, i7, i8, i9, en, rs, e1, e2, e3, e4, e5, e6, e7, e8, e9;
-    output o1, o2, o3,o4, o5, o6, o7, o8, o9;
-    wire lo = 0;
+module input_module(
+    input wire i1, i2, i3, i4, i5, i6, i7, i8, i9,
+    input wire en, rs,
+    input wire e1, e2, e3, e4, e5, e6, e7, e8, e9,
+    output wire o1, o2, o3, o4, o5, o6, o7, o8, o9
+);
+
+    wire lo = 1'b0;
     wire m1, m2, m3, m4, m5, m6, m7, m8, m9;
     
-    mux_2to1 mux1(i1, lo, en, m1);
-    mux_2to1 mux2(i2, lo, en, m2);
-    mux_2to1 mux3(i3, lo, en, m3);
-    mux_2to1 mux4(i4, lo, en, m4);
-    mux_2to1 mux5(i5, lo, en, m5);
-    mux_2to1 mux6(i6, lo, en, m6);
-    mux_2to1 mux7(i7, lo, en, m7);
-    mux_2to1 mux8(i8, lo, en, m8);
-    mux_2to1 mux9(i9, lo, en, m9);
+    assign m1 = (en) ? i1 : lo;
+    assign m2 = (en) ? i2 : lo;
+    assign m3 = (en) ? i3 : lo;
+    assign m4 = (en) ? i4 : lo;
+    assign m5 = (en) ? i5 : lo;
+    assign m6 = (en) ? i6 : lo;
+    assign m7 = (en) ? i7 : lo;
+    assign m8 = (en) ? i8 : lo;
+    assign m9 = (en) ? i9 : lo;
 
-    wire en1, en2, en3, en4, en5, en6, en7, en8, en9;
-    not(en1, e1);
-    not(en2, e2);
-    not(en3, e3);
-    not(en4, e4);
-    not(en5, e5);
-    not(en6, e6);
-    not(en7, e7);
-    not(en8, e8);
-    not(en9, e9);
+    wire en1 = ~e1;
+    wire en2 = ~e2;
+    wire en3 = ~e3;
+    wire en4 = ~e4;
+    wire en5 = ~e5;
+    wire en6 = ~e6;
+    wire en7 = ~e7;
+    wire en8 = ~e8;
+    wire en9 = ~e9;
 
     d_flip_flop dff1(m1, m1, rs, en1, o1);
     d_flip_flop dff2(m2, m2, rs, en2, o2);
@@ -328,22 +296,23 @@ input i1, i2, i3, i4, i5, i6, i7, i8, i9, en, rs, e1, e2, e3, e4, e5, e6, e7, e8
 
 endmodule
 
+
 //win_condition module
 
 module win_condition(i1, i2, i3, i4, i5, i6, i7, i8, i9, o);
     input i1, i2, i3, i4, i5, i6, i7, i8, i9;
     output o;
-    wire and1, and2, and3, and4, and5, and6, and7, and8;
-    and(and1, i1, i2, i3);
-    and(and2, i4, i5, i6);
-    and(and3, i7, i8, i9);
-    and(and4, i1, i4, i7);
-    and(and5, i2, i5, i8);
-    and(and6, i3, i6, i9);
-    and(and7, i1, i5, i9);
-    and(and8, i3, i5, i7);
-    or(o, and1, and2, and3, and4, and5, and6, and7, and8);
+    
+    assign o = (i1 & i2 & i3) | 
+               (i4 & i5 & i6) | 
+               (i7 & i8 & i9) | 
+               (i1 & i4 & i7) | 
+               (i2 & i5 & i8) | 
+               (i3 & i6 & i9) | 
+               (i1 & i5 & i9) | 
+               (i3 & i5 & i7);
 endmodule
+
 
 //main 
 
