@@ -1045,5 +1045,13 @@ endmodule
 </details>
 </details>
 
-
+## Hardware Implementation
+<details>
+  <summary>Detail</summary>
+  
+  There are several issues with implementing a bot for a regular 3 by 3 tic-tac-toe game, one of which is that it requires a huge number of ICs, somewhat in the range of 100 to 150. Hench, to scale down the hardware implementation, we created a 2 by 2 tic-tac-toe game with the only win condition being when all positions horizontally are occupied by the bot or the player. This has been done to ensure that the hardware implementation is possible with a realistic number of ICs (about 4 to 6).
+For the hardware implementation, the total number of flip-flops has been brought down to only 3. This level of scaling down has been accomplished by directly connecting the user input to the respective LEDs. While the upside of this is that the number of flip-flops has drastically reduced, at the end of each game, the player has to manually reset all the user inputs to low.
+The other constraint we added is that the bot should always play first. This has been done because if the player were to play first, the game would always end in a tie because the bot always plays optimally. But if the bot were to play first, the game could end in a tie, or the bot could win.
+In conclusion, the scaled-down hardware implementation of this project uses three D flip-flops, some AND gates, and some NOT gates.
+</details>
 
