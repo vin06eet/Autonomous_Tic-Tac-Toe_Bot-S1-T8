@@ -166,6 +166,33 @@ The computer input module has the following submodules
 	This module calculates the best possible cell for the BOT to make its move.
 <img src="Snapshots/decision3.png" alt="decision3">
 </details>
+<details>
+  <summary>Scaled Down Version:</summary>
+		This is a scaled down version of the circut, which is implemented in hardware.
+  <details>
+  <summary>MAIN</summary>
+		This is the main Module where the game is played and all the components are integrated.
+
+  
+<img src="Snapshots/main.png" alt="main module">
+</details>
+<details>
+  <summary>Bot input</summary>
+		This is the bot input module(processing unit) which decides where the move has to be made.
+
+  
+<img src="Snapshots/Bot Input.png" alt="main module">
+</details>
+
+  <details>
+  <summary>User Check</summary>
+		This module is used to validate and propagate the move made by the user.
+
+  
+<img src="Snapshots/User Check.png" alt="main module">
+</details>
+
+</details>
 
 </details>
 
