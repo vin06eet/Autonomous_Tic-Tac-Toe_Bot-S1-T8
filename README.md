@@ -92,10 +92,10 @@ Also, the state diagram is similar to that of a jk flip flop.
 <!-- Fourth Section -->
 ## Logisim Circuit Diagram
 <details>
-  <summary>Detail</summary>
+  <summary>Main</summary>
 This is the main module of the circuit.
 	<details>
-  <summary>MAIN</summary>
+  <summary>Home</summary>
 		This is the main Module where the game is played and all the components are integrated.
 
   
@@ -166,6 +166,8 @@ The computer input module has the following submodules
 	This module calculates the best possible cell for the BOT to make its move.
 <img src="Snapshots/decision3.png" alt="decision3">
 </details>
+
+</details>
 <details>
   <summary>Scaled Down Version:</summary>
 		This is a scaled down version of the circut, which is implemented in hardware.
@@ -194,7 +196,6 @@ The computer input module has the following submodules
 
 </details>
 
-</details>
 
 <!-- Fifth Section -->
 ## Verilog Code
