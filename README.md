@@ -1045,6 +1045,27 @@ endmodule
 </details>
 </details>
 
+## Design
+<details>
+  <summary>Detail</summary>
+  The logisim implementation of an autonomous tic tac toe bot for a 3x3 game has 4 main modules, namely Computer-input, Input-module, User-input, and Win-condition.
+
+The Computer-input module is the single most important module of our project, as it decides the best possible move for the bot. There are three sub-modules called Decisions 1, 2, and 3 that are used to make these decisions. The Decision-1 module is of the highest priority as it checks if the bot can make a move and win in that move. To accomplish this, it uses a submodule called Condition-1. Similarly, the Decision-2 module checks if the user can win in the next move and if so, the bot blocks it. This is again accomplished using the Condition-2 sub-module. The module of the least priority is the Decision-3 module, which is used to make a move in one of the rest of the optimal places.
+
+The Condition modules use a combination of NOR and AND gates to check for unoccupied and valid spaces, and the Decision-1 and 2 modules further use the condition modules and or gates. The Decision-3 module makes use of several or gates, along with a 16-4 bit priority encoder and a 4-16 bit decoder.
+
+The Second important module is the Input module. This essentially accomplishes a very simple task: to verify if a move is valid and, if so, propagate it. But its implementation uses logic gates, and it’s pretty complex. A series of 9 multiplexers have been used along with 9 d flip-flops, with their enable connected to enable inputs from the 9 places where the user or the bot can make their move.
+
+After this comes the Win-condition module, which basically checks if the player or the bot has won. It does so by checking if all places in any of the three rows, three columns or two diagonals are occupied by the bot or the player.
+
+The final module is the User-input module, which has been used to counter the problem of metastability, which occurs with the use of flip-flops. This module contains a combination of flip-flops that propagate an input pulse only once. For each user-input module, we used three D flip-flops, two gates, and some inverter gates.
+
+The final integration of all these modules happens in the main module, where we have used buttons for user input, reset, and bots move, red LEDs to indicate the players move, and green ones to indicate the bots move. There are also some LEDs to indicate whose turn it is, along with win indicators.
+
+This is the module-by-module implementation of an autonomous tic-tac-toe bot using only basic digital electronics devices.
+  
+</details>
+
 ## Hardware Implementation
 <details>
   <summary>Detail</summary>
